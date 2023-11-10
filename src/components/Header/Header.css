@@ -1,0 +1,37 @@
+.header {
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 14px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.header_color_grey {
+  background-color: #DDDEE3;
+}
+
+.header__link {
+  display: block;
+  text-decoration: none;
+}
+
+.header__logo {
+  width: 38px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 15px 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    padding: 18px 70px;
+    justify-content: flex-start;
+    column-gap: 44px;
+  }
+}

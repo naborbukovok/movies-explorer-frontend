@@ -1,0 +1,27 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(81.25%, 396px);
+  margin: 56px auto 30px;
+}
+
+.login__button {
+  margin-top: 309px;
+}
+
+@media screen and (min-width: 768px) {
+  .login {
+    margin: 232px auto;
+  }
+  
+  .login__button {
+    margin-top: 221px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login {
+    margin: 70px auto;
+  }
+}

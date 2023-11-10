@@ -1,0 +1,153 @@
+.about-project {
+  width: min(1580px, 100%);
+  padding: 0 18px 70px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-project__paragraphs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 56px;
+  padding-bottom: 60px;
+  margin-top: 60px;
+}
+
+.about-project__paragraph {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.about-project__paragraph-title {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: -0.72px;
+}
+
+.about-project__paragraph-text {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.about-project__schedule {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  text-align: center;
+}
+
+.about-project__task-time {
+  margin: 0;
+  padding: 11px 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.about-project__task-time_color_blue {
+  background-color: #3456F3;
+  color: #FFFFFF;
+}
+
+.about-project__task-time_color_gray {
+  background-color: #F2F2F2;
+}
+
+.about-project__task-name {
+  margin: 0;
+  padding: 10px 0 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: #A0A0A0;
+}
+
+@media screen and (min-width: 768px) {
+  .about-project {
+    padding: 0 50px 90px;
+  }
+
+  .about-project__paragraphs {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    row-gap: 0;
+    padding-bottom: 93px;
+    margin-top: 70px;
+  }
+
+  .about-project__paragraph {
+    row-gap: 22px;
+  }
+
+  .about-project__paragraph-title {
+    max-width: 320px;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.8px;
+  }
+
+  .about-project__paragraph-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-project__schedule {
+    grid-template-columns: 140px 1fr;
+  }
+
+  .about-project__task-time {
+    margin: 0;
+    padding: 9px 0;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .about-project__task-name {
+    padding-top: 14px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about-project__paragraph-title {
+    max-width: fit-content;
+  }
+
+  .about-project__schedule {
+    grid-template-columns: 228px 1fr;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about-project {
+    padding: 10px 70px 110px;
+  }
+
+  .about-project__paragraphs {
+    column-gap: 40px;
+    padding-bottom: 110px;
+  }
+
+  .about-project__paragraph {
+    row-gap: 26px;
+  }
+
+  .about-project__paragraph-text {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
