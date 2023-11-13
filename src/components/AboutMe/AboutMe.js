@@ -10,7 +10,7 @@ function AboutMe() {
       <div className="about-me__data">
         <img className="about-me__my-photo" src={myPhoto} alt="Мое фото" />
         <article className="about-me__info">
-          <p className="about-me__name">Мария</p>
+          <h3 className="about-me__name">Мария</h3>
           <p className="about-me__status">Фронтенд-разработчик, 21 год</p>
           <p className="about-me__description">
             Я живу в Москве, учусь в Высшей школе бизнеса НИУ ВШЭ. Люблю

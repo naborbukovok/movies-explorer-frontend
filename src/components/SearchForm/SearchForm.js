@@ -15,7 +15,7 @@ function SearchForm() {
   }
 
   return (
-    <section className="search-form">
+    <div className="search-form">
       <div className={`search-form__fields-container ${isInputFocused ? "search-form__fields-container_focused" : ""}`}>
         <form className={`search-form__form ${isInputFocused ? "search-form__form_focused" : ""}`}>
         <div className="search-form__icon" />
@@ -35,7 +35,7 @@ function SearchForm() {
         </form>
         <FilterCheckbox />
       </div>
-    </section>
+    </div>
   );
 }
 

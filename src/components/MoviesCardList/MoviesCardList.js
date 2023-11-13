@@ -45,7 +45,7 @@ function MoviesCardList(props) {
   ];
 
   return (
-    <section className="movies-card-list">
+    <ul className="movies-card-list">
       {type === "movies" && movies.map((movie, i) => (
         <MoviesCard type="movie" key={i} movie={movie} isSaved={movie.isSaved} />
       ))}
@@ -53,7 +53,7 @@ function MoviesCardList(props) {
       {type === "saved-movies" && movies.map((movie, i) => movie.isSaved && (
         <MoviesCard type="saved-movie" key={i} movie={movie} />
       ))}
-    </section>
+    </ul>
   );
 }
 
