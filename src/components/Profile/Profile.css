@@ -1,6 +1,6 @@
 .profile {
   margin: 0 auto;
-  padding: 70px 0 24px;
+  padding: 70px 0 40px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -71,7 +71,7 @@
   display: none;
 }
 
-.profile__button {
+.profile__edit-button {
   margin: 0;
   padding: 0 0 16px;
   background-color: #FFFFFF;
@@ -81,9 +81,15 @@
   line-height: 15px;
 }
 
-.profile__button_type_danger {
-  color: #EE3465;
+.profile__exit-link {
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  text-decoration: none;
+  font-size: 12px;
   font-weight: 500;
+  line-height: 15px;
+  color: #EE3465;
 }
 
 @media screen and (min-width: 768px) {
@@ -95,7 +101,12 @@
     padding: 80px 0 198px;
   }
 
-  .profile__button {
+  .profile__edit-button {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .profile__exit-link {
     font-size: 13px;
     line-height: 16px;
   }

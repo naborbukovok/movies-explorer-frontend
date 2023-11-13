@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import logo from "../../images/logo.svg";
 import "./Header.css";
@@ -11,12 +11,7 @@ function Header(props) {
       <a className="header__link" href="/">
         <img className="header__logo active-button" src={logo} alt="Логотип" />
       </a>
-      <Navigation
-        loggedIn={props.loggedIn}
-        isOpen={props.isOpen}
-        onButtonClick={props.onButtonClick}
-        onCloseButtonClick={props.onCloseButtonClick}
-      />
+      <Navigation loggedIn={props.loggedIn} />
     </header>
   );
 }

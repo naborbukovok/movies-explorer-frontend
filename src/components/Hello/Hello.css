@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+.hello__link {
+  display: block;
+  text-decoration: none;
+}
+
 .hello__logo {
   width: 38px;
   aspect-ratio: 1/1;

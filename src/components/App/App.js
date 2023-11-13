@@ -22,12 +22,7 @@ function App() {
         location.pathname === "/movies" ||
         location.pathname === "/saved-movies" ||
         location.pathname === "/profile") && (
-          <Header 
-            loggedIn={true}
-            isOpen={false}
-            onButtonClick={console.log()}
-            onCloseButtonClick={console.log()}
-          />
+          <Header loggedIn={true}  />
       )}
 
       <Routes>

@@ -37,8 +37,8 @@ function Profile() {
           Войти
         </button>
       </form>
-      <button type="button" className="profile__button active-link">Редактировать</button>
-      <button type="button" className="profile__button profile__button_type_danger active-link">Выйти из аккаунта</button>
+      <button type="button" className="profile__edit-button active-link">Редактировать</button>
+      <a href="/signin" className="profile__exit-link active-link">Выйти из аккаунта</a>
     </section>
   );
 }

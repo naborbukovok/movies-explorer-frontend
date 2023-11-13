@@ -1,11 +1,21 @@
-import {useLocation} from "react-router-dom";
+import { React, useState } from "react";
+import { useLocation } from "react-router-dom";
 import profileButtonIcon from "../../images/profile-button-icon.svg";
 
 import "./Navigation.css";
 
 function Navigation(props) {
   const location = useLocation();
-  const { loggedIn, isOpen, onButtonClick, onCloseButtonClick } = props;
+  const [isOpen, setIsOpen] = useState(false);
+  const { loggedIn } = props;
+
+  const handleBurgerButtonClick = () => {
+    setIsOpen(true);
+  }
+
+  const handleBurgerCloseButtonClick = () => {
+    setIsOpen(false);
+  }
 
   return (
     <div className="header__navigation">
@@ -22,10 +32,10 @@ function Navigation(props) {
             </a>
           </nav>
 
-          <button className="header__burger-button" type="button" onClick={onButtonClick} />
+          <button className="header__burger-button" type="button" onClick={handleBurgerButtonClick} />
           <div className={`header__burger-menu-container ${ isOpen ? "header__burger-menu-container__opened" : "" }`}>
             <div className={`header__burger-menu ${ isOpen ? "header__burger-menu_opened" : "" }`}>
-              <button className="header__burger-close-button" type="button" onClick={onCloseButtonClick} />
+              <button className="header__burger-close-button" type="button" onClick={handleBurgerCloseButtonClick} />
               <nav>
                 <div className="header__burger-menu-links">
                   <a className={`active-link header__burger-menu-link ${(location.pathname === "/") ? "header__burger-menu-link_active" : "" }`} href="/">Главная</a>

@@ -5,7 +5,9 @@ import "./Hello.css";
 function Hello(props) {
   return (
     <div className="hello">
-      <img className="hello__logo" src={logo} alt="Логотип" />
+      <a className="hello__link" href="/">
+        <img className="hello__logo active-button" src={logo} alt="Логотип" />
+      </a>
       <h1 className="hello__title">{ props.title }</h1>
     </div>
   );
