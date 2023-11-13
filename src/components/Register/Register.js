@@ -78,8 +78,8 @@ function Register() {
         </button>
       </form>
 
-      <p className="user-form__hint">
-        Уже зарегистрированы? <a className="user-form__link active-link" href="/signin">Войти</a>
+      <p className="auth-hint">
+        Уже зарегистрированы? <a className="auth-link active-link" href="/signin">Войти</a>
       </p>
     </div>
   );

@@ -105,7 +105,7 @@ html {
   line-height: 15px;
 }
 
-.user-form__hint {
+.auth-hint {
   margin: 0;
   padding: 14px 0 0;
   text-align: center;
@@ -115,7 +115,7 @@ html {
   line-height: 15px;
 }
 
-.user-form__link {
+.auth-link {
   color: #3456F3;
   text-decoration: none;
 }
@@ -126,7 +126,7 @@ html {
     line-height: 17px;
   }
 
-  .user-form__hint {
+  .auth-hint {
     padding-top: 16px;
     font-size: 14px;
     line-height: 17px;

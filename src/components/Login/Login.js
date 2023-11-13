@@ -56,8 +56,8 @@ function Login() {
         </button>
       </form>
 
-      <p className="user-form__hint">
-        Ещё не зарегистрированы? <a className="user-form__link active-link" href="/signup">Регистрация</a>
+      <p className="auth-hint">
+        Ещё не зарегистрированы? <a className="auth-link active-link" href="/signup">Регистрация</a>
       </p>
     </div>
   );
