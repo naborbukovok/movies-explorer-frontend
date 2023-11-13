@@ -65,22 +65,31 @@ html {
   line-height: 17px;
 }
 
+.user-form__input:invalid {
+  color: #EE3465;
+} 
+
 .user-form__input:focus {
   outline: none;
   border-bottom-color: #3456F3;
 }
 
-.user-form__input_type_error {
+/* .user-form__input_type_error {
   color: #EE3465;
-}
+} */
 
-.user-form__error-text {
+.user-form__error {
   margin: 0;
   padding: 6px 0 0;
   color: #EE3465;
   font-size: 10px;
   font-weight: 400;
   line-height: 12px;
+  display: none;
+}
+
+.user-form__error_active {
+  display: block;
 }
 
 .user-form__button {
