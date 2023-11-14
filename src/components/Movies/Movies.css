@@ -1,0 +1,26 @@
+.movies {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movies__more-button {
+  margin: 50px 0 80px;
+  padding: 0;
+  width: 240px;
+  height: 36px;
+  border-radius: 6px;
+  background: #F4F4F4;
+  border: none;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .movies__more-button {
+    width: 320px;
+  }
+}
