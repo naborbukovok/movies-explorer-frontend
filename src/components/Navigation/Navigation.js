@@ -7,7 +7,7 @@ import "./Navigation.css";
 function Navigation(props) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn } = props;
+  const { isLoggedIn } = props;
 
   const handleBurgerButtonClick = () => {
     setIsOpen(true);
@@ -19,7 +19,7 @@ function Navigation(props) {
 
   return (
     <div className="header__navigation">
-      { loggedIn ? (
+      { isLoggedIn ? (
         <>
           <nav className="header__menu">
             <div className="header__links">

@@ -105,6 +105,11 @@ html {
   line-height: 15px;
 }
 
+.user-form__button_blocked {
+  background-color: #F8F8F8;
+  cursor: not-allowed;
+}
+
 .auth-hint {
   margin: 0;
   padding: 14px 0 0;

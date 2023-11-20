@@ -4,6 +4,8 @@ import logo from "../../images/logo.svg";
 import "./Header.css";
 
 function Header(props) {
+  const { isLoggedIn } = props;
+
   const location = useLocation();
 
   return (
@@ -11,7 +13,7 @@ function Header(props) {
       <a className="header__link" href="/">
         <img className="header__logo active-button" src={logo} alt="Логотип" />
       </a>
-      <Navigation loggedIn={props.loggedIn} />
+      <Navigation isLoggedIn={isLoggedIn} />
     </header>
   );
 }
