@@ -52,7 +52,7 @@ function SavedMovies(props) {
     window.addEventListener("resize", updateParams);
     updateParams();
     return () => window.removeEventListener("resize", updateParams) 
-  }, []);
+  }, [inputValue, checkboxValue]);
 
   useEffect(() => {
     const filteredSavedMovies = filter(inputValue, checkboxValue, savedMovies);

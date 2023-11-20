@@ -60,7 +60,7 @@ function Movies(props) {
     window.addEventListener("resize", updateParams);
     updateParams();
     return () => window.removeEventListener("resize", updateParams) 
-  }, []);
+  }, [inputValue, checkboxValue]);
 
   useEffect(() => {
     if (filteredMovies.length <= columns * rows) {
