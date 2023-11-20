@@ -1,6 +1,6 @@
 export const filter = (input, isShort, movies) => {
   if (movies.length === 0) {
-    return null;
+    return [];
   } else if (input.length === 0 && !isShort) {
     return movies;
   } else {

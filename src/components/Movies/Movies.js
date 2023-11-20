@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { filter } from "../../utils/filter.js";
 import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
@@ -6,16 +7,33 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 
 function Movies(props) {
-  const { isPreloader, filterMovies, movies, savedMovies, onSaveButtonClick } = props;
-  const [isButton, setIsButton] = useState(false);
+  const { isPreloader, beatfilmMovies, savedMovies, onMovieButtonClick } = props;
+
+  // Параметры отображения списка карточек.
   const [columns, setColumns] = useState(1);
   const [rows, setRows] = useState(5);
   const [extraRows, setExtraRows] = useState(2);
   const [shownMovies, setShownMovies] = useState([]);
+  const [isButton, setIsButton] = useState(false);
 
-  
+  // Значения фильтров.
+  const [inputValue, setInputValue] = useState(localStorage.getItem("input") ? localStorage.getItem("input") : "");
+  const [checkboxValue, setCheckboxValue] = useState((localStorage.getItem("checkbox") && (localStorage.getItem("checkbox") === "true")) ? true : false);
+  const [filteredMovies, setFilteredMovies] = useState(localStorage.getItem("movies") ? JSON.parse(localStorage.getItem("movies")) : []);
+
   const addExtraRows = () => {
     setRows(rows + extraRows);
+  }
+
+  const handleFiltersChange = (newInputValue, newCheckboxValue) => {
+    setInputValue(newInputValue);
+    setCheckboxValue(newCheckboxValue);
+    localStorage.setItem("input", newInputValue);
+    localStorage.setItem("checkbox", newCheckboxValue);
+
+    const newFilteredMovies = filter(newInputValue, newCheckboxValue, beatfilmMovies);
+    setFilteredMovies(newFilteredMovies);
+    localStorage.setItem("movies", JSON.stringify(newFilteredMovies));
   }
 
   useEffect(() => {
@@ -45,23 +63,27 @@ function Movies(props) {
   }, []);
 
   useEffect(() => {
-    if (movies.length <= columns * rows) {
-      setShownMovies(movies);
+    if (filteredMovies.length <= columns * rows) {
+      setShownMovies(filteredMovies);
       setIsButton(false);
     } else {
-      setShownMovies(movies.slice(0, columns * rows));
+      setShownMovies(filteredMovies.slice(0, columns * rows));
       setIsButton(true);
     }
-  }, [movies, rows, columns]);
+  }, [filteredMovies, columns, rows]);
 
   return (
     <div className="movies">
-      <SearchForm filterMovies={filterMovies} />
+      <SearchForm 
+        onFiltersChange={handleFiltersChange}
+        inputValue={inputValue}
+        checkboxValue={checkboxValue}
+      />
       {isPreloader
         ? <Preloader />
-        : <MoviesCardList type="movies" movies={shownMovies} savedMovies={savedMovies} onSaveButtonClick={onSaveButtonClick} />
+        : <MoviesCardList type="movies" movies={shownMovies} savedMovies={savedMovies} onMovieButtonClick={onMovieButtonClick} />
       }
-      {isButton && <button className="movies__more-button active-button" type="button" onClick={ addExtraRows }>
+      {isButton && <button className="movies__more-button active-button" type="button" onClick={addExtraRows}>
         Ещё
       </button>}
     </div>

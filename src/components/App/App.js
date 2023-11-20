@@ -18,7 +18,6 @@ import NotFound from "../NotFound/NotFound";
 import Footer from "../Footer/Footer";
 
 import "./App.css";
-import { filter } from "../../utils/filter.js";
 
 function App() {
   const location = useLocation();
@@ -29,23 +28,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
 
-  const [movies, setMovies] = useState(
-    localStorage.getItem("movies")
-      ? JSON.parse(localStorage.getItem("movies"))
-      : []
-  );
-
   const navigate = useNavigate();
 
-  const filterMovies = (input, isShort) => {
-    const filteredMovies = filter(input, isShort, beatfilmMovies);
-    setMovies(filteredMovies);
-    localStorage.setItem("movies", JSON.stringify(filteredMovies));
-  };
-
-  const changeMovieSave = (movie, isSaved) => {
+  const handleChangeMovieSave = (movie, isSaved) => {
     if (!isSaved) {
-      console.log(movie);
       mainApi
         .postMovie({
           country: movie.country,
@@ -79,7 +65,18 @@ function App() {
     }
   };
 
-  function handleSetUserInfo(name, email) {
+  const handleDeleteSavedMovie = (savedMovie) => {
+    mainApi
+    .deleteMovie(savedMovie._id)
+    .then(() => {
+      setSavedMovies(savedMovies.filter((item) => (item._id !== savedMovie._id)));
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  };
+
+  const handleSetUserInfo = (name, email) => {
     mainApi
       .setUserInfo(name, email)
       .then((data) => {
@@ -91,7 +88,7 @@ function App() {
   }
 
   // Обработка регистрации.
-  function handleRegister(email, password, name) {
+  const handleRegister = (email, password, name) => {
     register(email, password, name)
       .then(() => {
         handleLogin(email, password);
@@ -195,10 +192,9 @@ function App() {
             path="/movies"
             element={
               <Movies
-                movies={movies}
+                beatfilmMovies={beatfilmMovies}
                 savedMovies={savedMovies}
-                filterMovies={filterMovies}
-                onSaveButtonClick={changeMovieSave}
+                onMovieButtonClick={handleChangeMovieSave}
                 isPreloader={isPreloader}
               />
             }
@@ -208,10 +204,8 @@ function App() {
             path="/saved-movies"
             element={
               <SavedMovies
-              movies={movies}
               savedMovies={savedMovies}
-              filterMovies={filterMovies}
-              onSaveButtonClick={changeMovieSave}
+              onMovieButtonClick={handleDeleteSavedMovie}
               />
             }
           />

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
-  const { type, movie, onSaveButtonClick } = props;
+  const { type, movie, onMovieButtonClick } = props;
 
   const [isSaved, setIsSaved] = useState(false);
 
@@ -18,7 +18,12 @@ function MoviesCard(props) {
   );
 
   const handleSaveButtonClick = () => {
-    onSaveButtonClick(movie, isSaved);
+    onMovieButtonClick(movie, isSaved);
+    setIsSaved(!isSaved);
+  }
+
+  const handleDeleteButtonClick = () => {
+    onMovieButtonClick(movie);
     setIsSaved(!isSaved);
   }
 
@@ -36,7 +41,7 @@ function MoviesCard(props) {
       >
         <img
           className="movies-card__image"
-          src={`https://api.nomoreparties.co/${movie.image.url}`}
+          src={type === "movie" ? `https://api.nomoreparties.co/${movie.image.url}` : movie.image}
           alt={`Постер фильма ${movie.nameRU}`}
         />
       </a>
@@ -54,7 +59,7 @@ function MoviesCard(props) {
           <button
             className="movies-card__delete-button active-button"
             type="button"
-            onClick={handleSaveButtonClick}
+            onClick={handleDeleteButtonClick}
           />
         )}
       </div>

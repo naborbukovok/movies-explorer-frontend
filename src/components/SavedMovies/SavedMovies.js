@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { filter } from "../../utils/filter.js";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 import "./SavedMovies.css";
 
 function SavedMovies(props) {
-  const { filterMovies, movies, savedMovies, onSaveButtonClick } = props;
+  const { savedMovies, onMovieButtonClick } = props;
 
-  const [isButton, setIsButton] = useState(false);
+  // Параметры отображения списка карточек.
   const [columns, setColumns] = useState(1);
   const [rows, setRows] = useState(5);
   const [extraRows, setExtraRows] = useState(2);
   const [shownMovies, setShownMovies] = useState([]);
+  const [isButton, setIsButton] = useState(false);
 
-  
+  // Значения фильтров.
+  const [inputValue, setInputValue] = useState("");
+  const [checkboxValue, setCheckboxValue] = useState(false);
+
   const addExtraRows = () => {
     setRows(rows + extraRows);
+  }
+
+  const handleFiltersChange = (newInputValue, newCheckboxValue) => {
+    setInputValue(newInputValue);
+    setCheckboxValue(newCheckboxValue);
   }
 
   useEffect(() => {
@@ -45,38 +55,25 @@ function SavedMovies(props) {
   }, []);
 
   useEffect(() => {
-    if (savedMovies.length <= columns * rows) {
-      setShownMovies(movies.filter((movie) => {
-        let isSaved = false; 
-        for (let i = 0; i < savedMovies.length; ++i) {
-          if (savedMovies[i].movieId === movie.id) {
-            isSaved = true;
-            break;
-          }
-        }
-        return isSaved;
-      }));
+    const filteredSavedMovies = filter(inputValue, checkboxValue, savedMovies);
+    if (filteredSavedMovies.length <= columns * rows) {
+      setShownMovies(filteredSavedMovies);
       setIsButton(false);
     } else {
-      setShownMovies(movies.filter((movie) => {
-        let isSaved = false; 
-        for (let i = 0; i < savedMovies.length; ++i) {
-          if (savedMovies[i].movieId === movie.id) {
-            isSaved = true;
-            break;
-          }
-        }
-        return isSaved;
-      }).slice(0, columns * rows));
+      setShownMovies(filteredSavedMovies.slice(0, columns * rows));
       setIsButton(true);
     }
-  }, [movies, savedMovies, rows, columns]);
+  }, [inputValue, checkboxValue, savedMovies, columns, rows]);
 
   return (
     <div className="saved-movies">
-      <SearchForm filterMovies={filterMovies} />
-      <MoviesCardList type="saved-movies" movies={shownMovies} savedMovies={savedMovies} onSaveButtonClick={onSaveButtonClick} />
-      {isButton && <button className="saved-movies__more-button active-button" type="button" onClick={ addExtraRows }>
+      <SearchForm 
+        onFiltersChange={handleFiltersChange}
+        inputValue=""
+        checkboxValue={false}
+      />
+      <MoviesCardList type="saved-movies" movies={shownMovies} savedMovies={savedMovies} onMovieButtonClick={onMovieButtonClick} />
+      {isButton && <button className="saved-movies__more-button active-button" type="button" onClick={addExtraRows}>
         Ещё
       </button>}
     </div>
