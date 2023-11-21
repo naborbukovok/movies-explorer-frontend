@@ -17,6 +17,23 @@
 
 .profile__form {
   padding: 64px 0 0;
+  position: relative;
+}
+
+.profile__form-hint {
+  position: absolute;
+  left: 0;
+  top: 27px;
+  width: 100%;
+  color: #2BE080;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.profile__form-hint_invisible {
+  display: none;
 }
 
 .profile__form-fields {
@@ -131,6 +148,12 @@
     padding: 80px 0 0;
   }
 
+  .profile__form-hint {
+    top: 40px;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
   .profile__form-button {
     margin: 198px 0 0;
   }
@@ -154,6 +177,10 @@
 
   .profile__form {
     padding: 107px 0 0;
+  }
+
+  .profile__form-hint {
+    top: 67px;
   }
 
   .profile__form-button {

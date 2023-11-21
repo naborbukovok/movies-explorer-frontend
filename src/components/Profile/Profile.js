@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
-import { isValid, ERROR_MESSAGE } from "../../utils/validation.js";
+import { isValid } from "../../utils/validation.js";
 import {
   USER_NAME_MIN_LENGTH,
   USER_NAME_MAX_LENGTH,
@@ -10,7 +10,7 @@ import {
 import "./Profile.css";
 
 function Profile(props) {
-  const { handleSetUserInfo, handleSignOut } = props;
+  const { handleSetUserInfo, handleSignOut, isProfileUpdateSucсessful } = props;
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -43,19 +43,20 @@ function Profile(props) {
   };
 
   useEffect(() => {
-    if (currentUser) {
+    if (currentUser && !isProfileEditing) {
       setName(currentUser.name || "");
       setEmail(currentUser.email || "");
     }
-  }, [currentUser]);
+
+  }, [currentUser, isProfileEditing]);
 
   useEffect(() => {
     setIsButtonBlocked(
       name.length === 0 ||
-        !isNameValid ||
-        email.length === 0 ||
-        !isEmailValid ||
-        (name === currentUser.name && email === currentUser.email)
+      !isNameValid ||
+      email.length === 0 ||
+      !isEmailValid ||
+      (name === currentUser.name && email === currentUser.email)
     );
   }, [name, email, isNameValid, isEmailValid, currentUser]);
 
@@ -64,6 +65,7 @@ function Profile(props) {
       <h1 className="profile__title">Привет, {name}!</h1>
       <form className="profile__form" onSubmit={handleFormSubmit}>
         <div className="profile__form-fields">
+          <p className={`profile__form-hint ${isProfileUpdateSucсessful ? "" : "profile__form-hint_invisible"}`}>Профиль успешно обновлён</p>
           <label className="profile__form-field">
             <input
               name="profile-name"

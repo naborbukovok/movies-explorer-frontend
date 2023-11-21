@@ -26,6 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
+  const [isProfileUpdateSucсessful, setIsProfileUpdateSucсessful] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
@@ -83,6 +84,10 @@ function App() {
       .setUserInfo(name, email)
       .then((data) => {
         setCurrentUser(data.data);
+        setIsProfileUpdateSucсessful(true);
+        setTimeout(() => {
+          setIsProfileUpdateSucсessful(false);
+        }, 2000)
       })
       .catch((error) => {
         console.log(error);
@@ -225,9 +230,9 @@ function App() {
                 <ProtectedRoute
                   isLoggedIn={isLoggedIn}
                   component={Profile}
-                  currentUser={currentUser}
                   handleSignOut={handleSignOut}
                   handleSetUserInfo={handleSetUserInfo}
+                  isProfileUpdateSucсessful={isProfileUpdateSucсessful}
                 />
               }
             />
