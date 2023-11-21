@@ -16,12 +16,14 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import Footer from "../Footer/Footer";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import "./App.css";
 
 function App() {
   const location = useLocation();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [beatfilmMovies, setBeatfilmMovies] = useState([]);
   const [isPreloader, setIsPreloader] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -121,7 +123,7 @@ function App() {
       .out()
       .then(() => {
         localStorage.clear();
-        navigate("/signin");
+        navigate("/");
         setIsLoggedIn(false);
         setCurrentUser({});
       })
@@ -131,6 +133,7 @@ function App() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     checkAuth()
       .then((data) => {
         if (data) {
@@ -140,7 +143,8 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   useEffect(() => {
@@ -154,7 +158,7 @@ function App() {
         .catch((error) => {
           console.log(error);
         })
-        .finally(() => setIsPreloader(false)); // Прелоадер отключается после загрузки фильмов из базы
+        .finally(() => setIsPreloader(false));
 
       mainApi
         .getUserInfo()
@@ -185,51 +189,63 @@ function App() {
           location.pathname === "/saved-movies" ||
           location.pathname === "/profile") && <Header isLoggedIn={isLoggedIn} />}
 
-        <Routes>
-          <Route path="/" element={<Main />} />
+        {!isLoading && (
+          <Routes>
+            <Route path="/" element={<Main />} />
 
-          <Route
-            path="/movies"
-            element={
-              <Movies
-                beatfilmMovies={beatfilmMovies}
-                savedMovies={savedMovies}
-                onMovieButtonClick={handleChangeMovieSave}
-                isPreloader={isPreloader}
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  component={Movies}
+                  beatfilmMovies={beatfilmMovies}
+                  savedMovies={savedMovies}
+                  onMovieButtonClick={handleChangeMovieSave}
+                  isPreloader={isPreloader}
+                />
+              }
+            />
+
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  component={SavedMovies}
+                  savedMovies={savedMovies}
+                  onMovieButtonClick={handleDeleteSavedMovie}
+                />
+              }
+            />
+
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute
+                  isLoggedIn={isLoggedIn}
+                  component={Profile}
+                  currentUser={currentUser}
+                  handleSignOut={handleSignOut}
+                  handleSetUserInfo={handleSetUserInfo}
+                />
+              }
+            />
+
+            {!isLoggedIn && (
+              <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+            )}
+
+            {!isLoggedIn && (
+              <Route
+                path="/signup"
+                element={<Register handleRegister={handleRegister} />}
               />
-            }
-          />
+            )}
 
-          <Route
-            path="/saved-movies"
-            element={
-              <SavedMovies
-              savedMovies={savedMovies}
-              onMovieButtonClick={handleDeleteSavedMovie}
-              />
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                currentUser={currentUser}
-                handleSignOut={handleSignOut}
-                handleSetUserInfo={handleSetUserInfo}
-              />
-            }
-          />
-
-          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
-
-          <Route
-            path="/signup"
-            element={<Register handleRegister={handleRegister} />}
-          />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        )}
 
         {(location.pathname === "/" ||
           location.pathname === "/movies" ||
