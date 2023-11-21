@@ -19,6 +19,7 @@
 }
 
 .movies-card__title-line {
+  height: 16px;
   display: flex;
   justify-content: space-between;
   padding: 14px 12px 10px;

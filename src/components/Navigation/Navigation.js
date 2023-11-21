@@ -38,11 +38,11 @@ function Navigation(props) {
               <button className="header__burger-close-button" type="button" onClick={handleBurgerCloseButtonClick} />
               <nav>
                 <div className="header__burger-menu-links">
-                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/") ? "header__burger-menu-link_active" : "" }`} to="/">Главная</Link>
-                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/movies") ? "header__burger-menu-link_active" : "" }`} to="/movies">Фильмы</Link>
-                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/saved-movies") ? "header__burger-menu-link_active" : "" }`} to="/saved-movies">Сохранённые фильмы</Link>
+                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/") ? "header__burger-menu-link_active" : "" }`} to="/" onClick={handleBurgerCloseButtonClick}>Главная</Link>
+                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/movies") ? "header__burger-menu-link_active" : "" }`} to="/movies" onClick={handleBurgerCloseButtonClick}>Фильмы</Link>
+                  <Link className={`active-link header__burger-menu-link ${(location.pathname === "/saved-movies") ? "header__burger-menu-link_active" : "" }`} to="/saved-movies" onClick={handleBurgerCloseButtonClick}>Сохранённые фильмы</Link>
                 </div>
-                <Link className="header__profile-link header__profile-link_place_burger-menu active-link" to="/profile">
+                <Link className="header__profile-link header__profile-link_place_burger-menu active-link" to="/profile" onClick={handleBurgerCloseButtonClick}>
                   <img className="header__profile-link-image" src={profileButtonIcon} alt="Иконка профиля"/>
                   <p className="header__profile-link-text">Аккаунт</p>
                 </Link>
