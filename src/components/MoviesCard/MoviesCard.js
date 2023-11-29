@@ -46,7 +46,7 @@ function MoviesCard(props) {
         />
       </a>
       <div className="movies-card__title-line">
-        <h2 className="movies-card__title">{movie.nameRU}</h2>
+        <h2 className="movies-card__title" title={movie.nameRU}>{movie.nameRU}</h2>
         {type === "movie" && (
           <button
             className={`active-button movies-card__save-button
