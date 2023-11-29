@@ -59,6 +59,7 @@ html {
   margin: 0;
   padding: 5px 0 10px;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid #E8E8E8;
   font-size: 14px;
   font-weight: 500;
@@ -103,6 +104,11 @@ html {
   font-size: 12px;
   font-weight: 500;
   line-height: 15px;
+}
+
+.user-form__button_blocked {
+  background-color: #F8F8F8;
+  cursor: not-allowed;
 }
 
 .auth-hint {

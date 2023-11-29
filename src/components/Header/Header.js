@@ -1,17 +1,19 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import logo from "../../images/logo.svg";
 import "./Header.css";
 
 function Header(props) {
+  const { isLoggedIn } = props;
+
   const location = useLocation();
 
   return (
     <header className={`header ${location.pathname === "/" ? "header_color_grey" : ""}`}>
-      <a className="header__link" href="/">
+      <Link className="header__link" to="/">
         <img className="header__logo active-button" src={logo} alt="Логотип" />
-      </a>
-      <Navigation loggedIn={props.loggedIn} />
+      </Link>
+      <Navigation isLoggedIn={isLoggedIn} />
     </header>
   );
 }

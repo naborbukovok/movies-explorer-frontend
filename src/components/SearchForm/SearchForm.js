@@ -3,37 +3,56 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm(props) {
+  const { onFiltersChange } = props;
+
+  const [inputValue, setInputValue] = useState(props.inputValue);
+  const [checkboxValue, setCheckboxValue] = useState(props.checkboxValue);
   const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const handleFocus = () => {
+  const handleSearchFormSubmit = (e) => {
+    e.preventDefault();
+    onFiltersChange(inputValue, checkboxValue);
+  }
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  }
+
+  const handleInputFocus = () => {
     setIsInputFocused(true);
   }
 
-  const handleBlur = () => {
+  const handleInputBlur = () => {
     setIsInputFocused(false);
+  }
+
+  const handleCheckboxChange = (e) => {
+    setCheckboxValue(e.target.checked);
+    onFiltersChange(inputValue, e.target.checked);
   }
 
   return (
     <div className="search-form">
-      <div className={`search-form__fields-container ${isInputFocused ? "search-form__fields-container_focused" : ""}`}>
-        <form className={`search-form__form ${isInputFocused ? "search-form__form_focused" : ""}`}>
-        <div className="search-form__icon" />
+      <div className={`search-form__fields-container ${ isInputFocused ? "search-form__fields-container_focused" : "" }`}>
+        <form className={`search-form__form ${ isInputFocused ? "search-form__form_focused" : "" }`} onSubmit={handleSearchFormSubmit}>
+          <div className="search-form__icon" />
           <input
             className="search-form__input"
             name="movie-title"
             type="text"
             placeholder="Фильм"
-            required
-            onFocus={handleFocus}
-            onBlur={handleBlur}
+            value={inputValue}
+            onChange={handleInputChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
           <button
             className="search-form__submit-button active-button"
             type="submit"
           />
         </form>
-        <FilterCheckbox />
+        <FilterCheckbox checked={checkboxValue} onChange={handleCheckboxChange} />
       </div>
     </div>
   );
