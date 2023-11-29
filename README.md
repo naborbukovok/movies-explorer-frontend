@@ -1,6 +1,6 @@
 ## Movies Explorer: дипломная работа в Яндекс Практикуме
 
-> :globe_with_meridians: [**Ссылка на Movies Explorer - https://movies.naborbukovok.nomoredomainsrocks.ru**](https://movies.naborbukovok.nomoredomainsrocks.ru) // IP 158.160.86.202
+> :globe_with_meridians: [**Ссылка на Movies Explorer - https://movies.naborbukovok.nomoredomainsrocks.ru**](https://movies.naborbukovok.nomoredomainsrocks.ru)
 
 ### :mortar_board: О чем проект
 **Этот проект** - фронтенд для дипломной работы по курсу ["Веб-разработчик"](https://practicum.yandex.ru/web) от сервиса Яндекс Практикум. В веб-приложении пользователи могут управлять данными своего профиля, искать фильмы из подборки при помощи поисковой строки и фильтра "Короткометражки", сохранять карточки понравившихся фильмов. Доступны регистрация и авторизация. Верстка выполнена в соответствии с [макетом в Figma](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC%D0%BD%D1%8B%D0%B9-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82?node-id=1%3A1534&mode=dev). Для элементов, поведение которых не задано в макете, анимации продуманы самостоятельно. Данные приложение получает от двух API:<br/>
